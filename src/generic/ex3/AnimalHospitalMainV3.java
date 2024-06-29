@@ -1,14 +1,14 @@
-package generic.test.ex3;
+package generic.ex3;
 
 import generic.animal.Cat;
 import generic.animal.Dog;
 
-public class AnimalHospitalMainV0 {
+public class AnimalHospitalMainV3 {
 
     public static void main(String[] args) {
-        // DogHospital 클래스와 CatHospital 클래스는 명확하게 똑같은 로직으로 작동된다 -> 코드 중복
-        DogHospital dogHospital = new DogHospital();
-        CatHospital catHospital = new CatHospital();
+
+        AnimalHospitalV3<Dog> dogHospital = new AnimalHospitalV3<>();
+        AnimalHospitalV3<Cat> catHospital = new AnimalHospitalV3<>();
 
         Dog dog = new Dog("멍멍이1", 100);
         Cat cat = new Cat("냐옹이1", 300);
@@ -21,13 +21,10 @@ public class AnimalHospitalMainV0 {
         catHospital.set(cat);
         catHospital.checkup();
 
-        // 문제1: 개 병원에 고양이 전달
-        // dogHospital.set(cat); // 다른 타입 입력: 컴파일 오류
+//         dogHospital.set(cat); // 타입 매개변수 체크 - 컴파일 오류 발생
 
-        // 문제2: 개 타입 반환
         dogHospital.set(dog);
         Dog biggerDog = dogHospital.bigger(new Dog("멍멍이2", 200));
         System.out.println("biggerDog = " + biggerDog);
-
     }
 }

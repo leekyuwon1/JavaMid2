@@ -1,4 +1,4 @@
-package generic.test.ex5;
+package generic.ex5;
 
 import generic.animal.Cat;
 import generic.animal.Dog;
@@ -19,5 +19,6 @@ public class WildcardMain1 {
 
         WildcardEx.printAndReturnGenericV1(dogBox);
         WildcardEx.printAndReturnWildcard(dogBox);
+
     }
 }
