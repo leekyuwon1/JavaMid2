@@ -1,11 +1,11 @@
-package collection;
+package collection.array;
 
 import java.util.Arrays;
 
 public class ArrayMain2 {
 
     public static void main(String[] args) {
-        int[] arr = new int[5];
+        int[] arr = new int[5]; // 배열은 처음부터 정적으로 길이를 정해야된다.
         arr[0] = 1;
         arr[1] = 2;
         System.out.println(Arrays.toString(arr));
