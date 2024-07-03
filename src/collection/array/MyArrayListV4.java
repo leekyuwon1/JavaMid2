@@ -2,18 +2,19 @@ package collection.array;
 
 import java.util.Arrays;
 
-public class MyArrayListV3 {
+// 제네릭 도입
+public class MyArrayListV4<E> {
 
     private static final int DEFAULT_CAPACITY = 5;
 
     private Object[] elementData;
     private int size;
 
-    public MyArrayListV3() {
+    public MyArrayListV4() {
         elementData = new Object[DEFAULT_CAPACITY]; // 기본적으로 수용할 수 있는 양을 의미한다.
     }
 
-    public MyArrayListV3(int initialCapacity) {
+    public MyArrayListV4(int initialCapacity) {
         elementData = new Object[initialCapacity]; // 인위적으로 수용할 수 있는 양을 늘릴 수 있다.
     }
 
@@ -21,7 +22,7 @@ public class MyArrayListV3 {
         return size;
     }
 
-    public void add(Object e) {
+    public void add(E e) {
         if (size == elementData.length) {
             grow();
         }
@@ -29,7 +30,7 @@ public class MyArrayListV3 {
     }
 
     // 코드 추가
-    public void add(int index, Object e) {
+    public void add(int index, E e) {
         if (size == elementData.length) {
             grow();
         }
@@ -54,20 +55,21 @@ public class MyArrayListV3 {
         elementData = newArr; // 참조값을 새로운 배열로 바꿔치기한다 .
     }
 
-    public Object get(int index) {
-        return elementData[index]; // 매개변수의 인덱스의 순번을 반환한다.
+    @SuppressWarnings("unchecked")
+    public E get(int index) {
+        return (E) elementData[index]; // 매개변수의 인덱스의 순번을 반환한다.
     }
 
-    public Object set(int index, Object element) {
-        Object oldValue = get(index); // 기존의 있던 인덱스 번호의 값을 변수에 담고
+    public E set(int index, E element) {
+        E oldValue = get(index); // 기존의 있던 인덱스 번호의 값을 변수에 담고
         elementData[index] = element; // 새로 들어온 값을 기존의 인덱스에 넣는다.
 
         return oldValue; // 기존의 데이터를 반환
     }
 
     // 코드 추가
-    public Object remove(int index) {
-        Object oldValue = get(index);
+    public E remove(int index) {
+        E oldValue = get(index);
         shiftLeftFrom(index);
 
         size--;
@@ -82,7 +84,7 @@ public class MyArrayListV3 {
         }
     }
 
-    public int indexOf(Object o) { // 인덱스의 몇번 째에 해당하느냐 찾는것
+    public int indexOf(E o) { // 인덱스의 몇번 째에 해당하느냐 찾는것
         for (int i = 0; i < size; i++) {
             if (elementData[i].equals(o)) {
                 return i;
