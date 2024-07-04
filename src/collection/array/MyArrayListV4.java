@@ -22,6 +22,14 @@ public class MyArrayListV4<E> {
         return size;
     }
 
+/*
+    // 악의적으로 버그발생
+    public void add(String e) { // 이런 상황이 발생하게 된다면, 컴파일까지 잡지 못하고 매개변수를 잘못넣게 되어 런타임 에러 발생
+        elementData[size] = e;
+        size++;
+    }
+*/
+
     public void add(E e) {
         if (size == elementData.length) {
             grow();
