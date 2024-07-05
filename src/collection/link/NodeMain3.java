@@ -21,21 +21,16 @@ public class NodeMain3 {
         // 특정 index 노드 조회
         int index = 2;
         Node index2Node = getNode(first, index);
-        System.out.println("index2Node = " + index2Node);
+        System.out.println("index2Node = " + index2Node.item);
 
         // 데이터 추가하기
         System.out.println("데이터 추가하기");
         add(first, "D");
-    }
-
-    private static void add(Node node, String d) {
-        Node x = node;
-        while (x != null) {
-            x = x.next;
-        }
-        x = new Node(d);
-
-        printAll(x);
+        System.out.println(first);
+        add(first, "E");
+        System.out.println(first);
+        add(first, "F");
+        System.out.println(first);
     }
 
     private static void printAll(Node node) {
@@ -60,5 +55,10 @@ public class NodeMain3 {
             x = x.next;
         }
         return x;
+    }
+
+    private static void add(Node node, String d) {
+        Node lastNode = getLastNode(node);
+        lastNode.next = new Node(d);
     }
 }
