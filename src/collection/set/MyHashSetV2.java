@@ -3,20 +3,20 @@ package collection.set;
 import java.util.Arrays;
 import java.util.LinkedList;
 
-public class MyHashSetV1 {
+public class MyHashSetV2 {
 
     static final int DEFAULT_INITIAL_CAPACITY = 16;
 
-    private LinkedList<Integer>[] buckets;
+    private LinkedList<Object>[] buckets;
 
     private int size = 0;
     private int capacity = DEFAULT_INITIAL_CAPACITY;
 
-    public MyHashSetV1() { // 기본 생성자를 사용할 시, 기본적으로 16의 배열을 만든다.
+    public MyHashSetV2() { // 기본 생성자를 사용할 시, 기본적으로 16의 배열을 만든다.
         initBuckets();
     }
 
-    public MyHashSetV1(int capacity) { // 따로 매개변수를 넣을 시, 그 매개변수의 값으로 배열을 만듬
+    public MyHashSetV2(int capacity) { // 따로 매개변수를 넣을 시, 그 매개변수의 값으로 배열을 만듬
         this.capacity = capacity;
         initBuckets();
     }
@@ -28,9 +28,9 @@ public class MyHashSetV1 {
         }
     }
 
-    public boolean add(int value) {
+    public boolean add(Object value) {
         int hashIndex = hashIndex(value);
-        LinkedList<Integer> bucket = buckets[hashIndex];
+        LinkedList<Object> bucket = buckets[hashIndex];
         if (bucket.contains(value)) {
             return false;
         }
@@ -40,36 +40,32 @@ public class MyHashSetV1 {
         return true;
     }
 
-    public boolean contains(int value) {
+    public boolean contains(Object value) {
         int hashIndex = hashIndex(value);
-        LinkedList<Integer> bucket = buckets[hashIndex];
+        LinkedList<Object> bucket = buckets[hashIndex];
         return bucket.contains(value);
     }
 
-    public boolean remove(int value) {
+    public boolean remove(Object value) {
         int hashIndex = hashIndex(value);
-        LinkedList<Integer> bucket = buckets[hashIndex];
+        LinkedList<Object> bucket = buckets[hashIndex];
         if (bucket.contains(value)) {
 //            bucket.remove(value); // 이렇게하면 int 형으로 받는다 주의: 인덱스 형태로도 받을 수 있음. List 타입이다.
-            bucket.remove(Integer.valueOf(value));
+            bucket.remove(value);
             size--;
             return true;
         }
         return false;
     }
 
-    public boolean searchValue(int value) {
+    public boolean searchValue(Object value) {
         int hashIndex = hashIndex(value);
-        LinkedList<Integer> bucket = buckets[hashIndex];
+        LinkedList<Object> bucket = buckets[hashIndex];
          return bucket.contains(value);
-//        if (bucket.contains(value)) {
-//            return true;
-//        }
-//        return false;
     }
 
-    private int hashIndex(int value) {
-        return value % capacity;
+    private int hashIndex(Object value) {
+        return Math.abs(value.hashCode()) % capacity;// -1, -10 등등 마이너스가 나올 가능성이 있다.
     }
     public int getSize() {
         return size;
@@ -77,7 +73,7 @@ public class MyHashSetV1 {
 
     @Override
     public String toString() {
-        return "MyHashSetV1{" +
+        return "MyHashSetV2{" +
                 "buckets=" + Arrays.toString(buckets) +
                 ", size=" + size +
                 ", capacity=" + capacity +
