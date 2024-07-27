@@ -15,5 +15,20 @@ public class MyArrayMain {
             Integer next = iterator.next();
             System.out.println("next = " + next);
         }
+
+        // 추가
+        System.out.println("for-each 사용");
+        for (int value : array) {
+            System.out.println("value = " + value);
+        }
+
+/*
+        * 컴파일 시점
+        while(iterator.hasNext()) {
+            Integer value = iterator.next();
+            System.out.println("value = " + value);
+        }
+*/
+
     }
 }
