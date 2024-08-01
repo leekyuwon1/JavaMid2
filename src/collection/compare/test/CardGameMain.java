@@ -1,12 +1,10 @@
 package collection.compare.test;
 
-import java.util.*;
 
 public class CardGameMain {
 
     public static void main(String[] args) {
         Deck deck = new Deck();
-
         Player player1 = new Player("플레이어 1");
         Player player2 = new Player("플레이어 2");
 

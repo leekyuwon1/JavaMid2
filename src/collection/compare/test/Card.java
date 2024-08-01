@@ -14,9 +14,6 @@ public class Card implements Comparable<Card> {
         return rank;
     }
 
-    public Suit getSuit() {
-        return suit;
-    }
 
     @Override
     public int compareTo(Card anotherCard) {
